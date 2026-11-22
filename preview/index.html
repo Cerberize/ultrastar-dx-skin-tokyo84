@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tokyo84 — UltraStar Deluxe Theme Previewer (Kabukicho Midnight)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-shell" aria-label="Theme Previewer Navigation">
+    <div class="brand-lockup">
+      <span class="brand-badge">TOKYO84</span>
+      <span class="brand-jp">東京 ’84</span>
+      <span class="brand-sub">UltraStar Deluxe Theme · Kabukicho Midnight</span>
+    </div>
+
+    <nav class="screen-tabs" role="tablist" aria-label="UltraStar Deluxe Screens">
+      <button class="m3-tab is-active" role="tab" aria-selected="true" data-screen="main">Main Menu</button>
+      <button class="m3-tab" role="tab" aria-selected="false" data-screen="song">Song Select</button>
+      <button class="m3-tab" role="tab" aria-selected="false" data-screen="sing">Singing Stage</button>
+      <button class="m3-tab" role="tab" aria-selected="false" data-screen="score">Score Results</button>
+      <button class="m3-tab" role="tab" aria-selected="false" data-screen="options">Options</button>
+    </nav>
+
+    <div class="shell-actions">
+      <button id="sfxToggle" class="m3-chip is-on" type="button" aria-pressed="true">
+        <span class="dot"></span> 80s FM SFX: ON
+      </button>
+    </div>
+  </header>
+
+  <main class="preview-workspace">
+    <div class="usdx-viewport" id="viewport" role="region" aria-label="16:9 UltraStar Deluxe Live Screen Preview">
+
+      <!-- ================================================================
+           SCREEN 1: MAIN MENU (1:1 USDX 800x600 Tokyo84.ini Layout)
+      ================================================================= -->
+      <section class="usdx-screen is-active" id="screen-main" style="--bg-img: url('../themes/Tokyo84/bg/bg_main.jpg')">
+        <div class="screen-scrim scrim-left"></div>
+        <div class="usdx-main-canvas">
+          <!-- MainStatic1 (56,50) + MainText1 (106,46) -->
+          <div class="usdx-main-header">
+            <img src="../themes/Tokyo84/icons/icon_sing.png" alt="" class="usdx-main-icon" />
+            <div class="usdx-main-title">MAIN MENU</div>
+          </div>
+
+          <!-- MainButtonSolo / Multi / Jukebox / Collection1 (X=56, W=260, H=46) -->
+          <div class="usdx-main-stack" role="menu">
+            <button class="usdx-pill is-focused" data-goto="song" data-desc="Sing a song in Solo or Duet mode">
+              SING
+            </button>
+            <button class="usdx-pill" data-goto="sing" data-desc="Party Mode — Play with teams & multiple rounds">
+              PARTY
+            </button>
+            <button class="usdx-pill" data-goto="song" data-desc="Jukebox — Play music videos & lyrics nonstop">
+              JUKEBOX
+            </button>
+            <button class="usdx-pill" id="toolsToggle" data-desc="Tools — Open Statistics, Song Editor, or System Options">
+              TOOLS ▸
+            </button>
+
+            <!-- MainButtonAbout (X=56, Y=376, W=124) & MainButtonExit (X=192, Y=376, W=124) -->
+            <div class="usdx-main-row">
+              <button class="usdx-pill is-secondary" data-sfx="click" data-desc="About UltraStar Deluxe & Tokyo84 Theme">ABOUT</button>
+              <button class="usdx-pill is-secondary" data-sfx="back" data-desc="Exit UltraStar Deluxe">EXIT</button>
+            </div>
+          </div>
+
+          <!-- Expandable Tools Sub-menu (X=332, Y=298/344/390) -->
+          <div class="usdx-tools-flyout" id="toolsFlyout">
+            <button class="usdx-pill is-sub" data-goto="score" data-desc="View High Scores & Statistics">STATS</button>
+            <button class="usdx-pill is-sub" data-sfx="click" data-desc="Open Song Note Editor">EDITOR</button>
+            <button class="usdx-pill is-sub" data-goto="options" data-desc="Configure Theme, Audio & Microphones">OPTIONS</button>
+          </div>
+
+          <!-- MainTextDescriptionLong (X=56, Y=496) -->
+          <div class="usdx-desc-long" id="mainDesc">
+            Sing a song in Solo or Duet mode
+          </div>
+
+          <!-- DefaultBar1 (Leiste1, 0..250, TokyoMagenta) + DefaultBar2 (Leiste2, 250..800, Dark M3) -->
+          <div class="usdx-bottom-bar">
+            <div class="usdx-bar-left">TOKYO84 · MAIN</div>
+            <div class="usdx-bar-right">
+              <span class="legend-item"><img src="../themes/Tokyo84/ui/key_navi.png" alt="" /> Navigate</span>
+              <span class="legend-item"><img src="../themes/Tokyo84/ui/key_c.png" alt="" /> Credits</span>
+              <span class="legend-item"><img src="../themes/Tokyo84/ui/key_enter.png" alt="" /> Select</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 2: SONG SELECTION
+      ================================================================= -->
+      <section class="usdx-screen" id="screen-song" style="--bg-img: url('../themes/Tokyo84/bg/bg_song.jpg')">
+        <div class="screen-scrim scrim-soft"></div>
+        <div class="song-layout">
+          <header class="screen-topbar">
+            <div>
+              <span class="kicker">SONG LIBRARY · 曲選択</span>
+              <h2>CITY POP &amp; MIDNIGHT CLASSICS</h2>
+            </div>
+            <div class="topbar-meta">
+              <span class="meta-chip">TRACK <strong id="songIndex">01</strong> / 04</span>
+              <span class="meta-chip accent-cyan">16:9 HD VIDEO</span>
+            </div>
+          </header>
+
+          <div class="cover-stage">
+            <button class="nav-arrow" id="prevSong" aria-label="Previous song">
+              <img src="../themes/Tokyo84/ui/arrow_left.png" alt="Previous" />
+            </button>
+
+            <div class="cover-carousel" id="coverCarousel">
+              <!-- Populated dynamically by app.js -->
+            </div>
+
+            <button class="nav-arrow" id="nextSong" aria-label="Next song">
+              <img src="../themes/Tokyo84/ui/arrow_right.png" alt="Next" />
+            </button>
+          </div>
+
+          <div class="song-detail-bar">
+            <div class="song-info">
+              <div class="song-badges" id="songBadges"></div>
+              <h3 id="songTitle">Plastic Love</h3>
+              <p id="songArtist">Mariya Takeuchi · 1984 · Tokyo City Pop</p>
+            </div>
+
+            <div class="vu-equalizer" id="songEq" aria-hidden="true"></div>
+
+            <button class="m3-cta-btn" data-goto="sing" data-sfx="start">
+              <span>START SINGING</span>
+              <span class="jp">歌う</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 3: SINGING STAGE (HI-FI NEON PITCH BARS)
+      ================================================================= -->
+      <section class="usdx-screen" id="screen-sing" style="--bg-img: url('../themes/Tokyo84/bg/bg_sing.jpg')">
+        <div class="screen-scrim scrim-sing"></div>
+        <div class="sing-layout">
+          <div class="sing-topbar">
+            <div class="player-hud p1">
+              <div class="hud-label">PLAYER 1 · ボーカル 1</div>
+              <div class="hud-score" id="p1Score">07,840</div>
+            </div>
+
+            <div class="timebar-wrap">
+              <div class="timebar-meta">
+                <span id="singTrackLabel">Mariya Takeuchi — Plastic Love</span>
+                <span class="mono" id="singClock">01:42 / 04:53</span>
+              </div>
+              <div class="timebar-track">
+                <div class="timebar-fill" id="singProgress"></div>
+              </div>
+            </div>
+
+            <div class="player-hud p2">
+              <div class="hud-label">PLAYER 2 · ボーカル 2</div>
+              <div class="hud-score" id="p2Score">07,420</div>
+            </div>
+          </div>
+
+          <div class="pitch-lanes-container" aria-label="Animated Neon Pitch Lanes">
+            <div class="pitch-lane" id="laneP1">
+              <div class="lane-tag p1">P1</div>
+              <div class="pitch-staff">
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="playhead"></div>
+                <div class="notes-track" id="notesTrackP1"></div>
+              </div>
+            </div>
+
+            <div class="pitch-lane" id="laneP2">
+              <div class="lane-tag p2">P2</div>
+              <div class="pitch-staff">
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="playhead"></div>
+                <div class="notes-track" id="notesTrackP2"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lyric-card">
+            <div class="lyric-line active-line" id="lyricCurrent">
+              <span class="sung">I'm just playing</span> <span class="highlight">games</span>, I know that's plastic love
+            </div>
+            <div class="lyric-line next-line" id="lyricNext">
+              Dance to the plastic beat, another morning comes — プラスチック・ラブ
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 4: SCORE RESULTS
+      ================================================================= -->
+      <section class="usdx-screen" id="screen-score" style="--bg-img: url('../themes/Tokyo84/bg/bg_score.jpg')">
+        <div class="screen-scrim scrim-soft"></div>
+        <div class="score-layout">
+          <header class="screen-topbar">
+            <div>
+              <span class="kicker">PERFORMANCE RESULTS · 結果発表</span>
+              <h2>SHINJUKU STAGE REPORT</h2>
+            </div>
+            <div class="topbar-meta">
+              <span class="meta-chip accent-amber">NEW RECORD ★</span>
+            </div>
+          </header>
+
+          <div class="score-cards-grid">
+            <article class="m3-score-card winner">
+              <div class="card-head">
+                <div>
+                  <span class="player-pill p1">PLAYER 1 · WINNER</span>
+                  <h3>AKIRA</h3>
+                </div>
+                <img src="../themes/Tokyo84/score/medal_gold.png" alt="Gold Medal" class="medal-img" />
+              </div>
+
+              <div class="total-score">9,480<span>PTS</span></div>
+
+              <div class="breakdown-list">
+                <div class="breakdown-row">
+                  <span>Normal Notes</span>
+                  <div class="bar"><div class="fill p1" style="width: 92%"></div></div>
+                  <span class="mono">7,520</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Golden Notes ★</span>
+                  <div class="bar"><div class="fill gold" style="width: 98%"></div></div>
+                  <span class="mono">1,120</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Line Bonus</span>
+                  <div class="bar"><div class="fill cyan" style="width: 84%"></div></div>
+                  <span class="mono">840</span>
+                </div>
+              </div>
+
+              <div class="stars-row">
+                <img src="../themes/Tokyo84/sing/star_golden.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_golden.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_golden.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_golden.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_golden.png" alt="★" />
+                <span class="rank-label">SUPERSTAR · 伝説</span>
+              </div>
+            </article>
+
+            <article class="m3-score-card">
+              <div class="card-head">
+                <div>
+                  <span class="player-pill p2">PLAYER 2</span>
+                  <h3>YUKI</h3>
+                </div>
+                <img src="../themes/Tokyo84/score/medal_silver.png" alt="Silver Medal" class="medal-img" />
+              </div>
+
+              <div class="total-score">8,760<span>PTS</span></div>
+
+              <div class="breakdown-list">
+                <div class="breakdown-row">
+                  <span>Normal Notes</span>
+                  <div class="bar"><div class="fill cyan" style="width: 86%"></div></div>
+                  <span class="mono">7,040</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Golden Notes ★</span>
+                  <div class="bar"><div class="fill gold" style="width: 88%"></div></div>
+                  <span class="mono">960</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Line Bonus</span>
+                  <div class="bar"><div class="fill p1" style="width: 76%"></div></div>
+                  <span class="mono">760</span>
+                </div>
+              </div>
+
+              <div class="stars-row">
+                <img src="../themes/Tokyo84/sing/star_filled.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_filled.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_filled.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_filled.png" alt="★" />
+                <img src="../themes/Tokyo84/sing/star_empty.png" alt="☆" />
+                <span class="rank-label">LEAD SINGER · 実力派</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="score-footer">
+            <button class="m3-pill-btn compact" data-goto="song" data-sfx="click">
+              <span class="btn-labels"><span class="en">NEXT SONG</span><span class="jp">次の曲へ</span></span>
+            </button>
+            <button class="m3-pill-btn compact is-focused" data-goto="main" data-sfx="back">
+              <span class="btn-labels"><span class="en">MAIN MENU</span><span class="jp">メニュー</span></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 5: OPTIONS (MATERIAL 3 SETTINGS)
+      ================================================================= -->
+      <section class="usdx-screen" id="screen-options" style="--bg-img: url('../themes/Tokyo84/bg/bg_song.jpg')">
+        <div class="screen-scrim scrim-soft"></div>
+        <div class="options-layout">
+          <header class="screen-topbar">
+            <div>
+              <span class="kicker">SYSTEM SETTINGS · システム設定</span>
+              <h2>APPEARANCE &amp; AUDIO</h2>
+            </div>
+            <button class="m3-pill-btn compact" data-goto="main" data-sfx="back">
+              <span class="btn-labels"><span class="en">BACK</span><span class="jp">戻る</span></span>
+            </button>
+          </header>
+
+          <div class="options-list">
+            <div class="option-row is-focused" tabindex="0">
+              <div>
+                <div class="opt-title">Theme <span class="opt-jp">テーマ</span></div>
+                <div class="opt-sub">Active UltraStar Deluxe layout &amp; typography</div>
+              </div>
+              <button class="opt-value" data-cycle="Tokyo84,Modern,Deluxe">Tokyo84</button>
+            </div>
+
+            <div class="option-row" tabindex="0">
+              <div>
+                <div class="opt-title">Skin Colorway <span class="opt-jp">カラー</span></div>
+                <div class="opt-sub">Material 3 Dark Tonal + Shinjuku Neon palette</div>
+              </div>
+              <button class="opt-value" data-cycle="KabukichoMidnight">KabukichoMidnight</button>
+            </div>
+
+            <div class="option-row" tabindex="0">
+              <div>
+                <div class="opt-title">UI Sound Pack <span class="opt-jp">効果音</span></div>
+                <div class="opt-sub">Synthesized 1984 FM / DX7 &amp; cassette tactile SFX</div>
+              </div>
+              <button class="opt-value" data-cycle="1984 FM Synth,Classic USDX,Muted">1984 FM Synth</button>
+            </div>
+
+            <div class="option-row" tabindex="0">
+              <div>
+                <div class="opt-title">Pitch Bar Style <span class="opt-jp">音程バー</span></div>
+                <div class="opt-sub">Glowing pill-shaped Hi-Fi neon bars with golden star bursts</div>
+              </div>
+              <button class="opt-value" data-cycle="Hi-Fi Neon Pill,Minimal Cinema">Hi-Fi Neon Pill</button>
+            </div>
+
+            <div class="option-row" tabindex="0">
+              <div>
+                <div class="opt-title">Display Resolution <span class="opt-jp">解像度</span></div>
+                <div class="opt-sub">Widescreen 16:9 native scaling</div>
+              </div>
+              <button class="opt-value" data-cycle="1920 × 1080 (16:9),2560 × 1440 (16:9),3840 × 2160 (4K)">1920 × 1080 (16:9)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="token-strip" aria-label="Material Design 3 Color Tokens">
+    <div class="token"><span class="swatch" style="background:#0B0D18"></span>Surface Base <code>#0B0D18</code></div>
+    <div class="token"><span class="swatch" style="background:#1B1F34"></span>M3 Container <code>#1B1F34</code></div>
+    <div class="token"><span class="swatch" style="background:#FF2E93"></span>Shinjuku Magenta <code>#FF2E93</code></div>
+    <div class="token"><span class="swatch" style="background:#00E5FF"></span>Cyber Cyan <code>#00E5FF</code></div>
+    <div class="token"><span class="swatch" style="background:#FFB300"></span>Tokyo Amber <code>#FFB300</code></div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
