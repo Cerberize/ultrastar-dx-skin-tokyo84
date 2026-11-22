@@ -560,7 +560,72 @@ def build_tokyo84_ini() -> None:
     set_in_section(sections, "InsertUserPopupButtonUsernameText2", {"Size": "18", "Color": "TokyoWhite"})
     set_in_section(sections, "SendScorePopupText1", {"Size": "16", "Color": "TokyoWhite"})
 
-    # 8. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
+    # Help Popup — Deep Dark Midnight Scrim + Cohesive M3 Volume Sliders (TextSize=16)
+    append_section(sections, "HelpPopupStatic1", [
+        "X = 0",
+        "Y = 0",
+        "W = 800",
+        "H = 600",
+        "Z = 0.05",
+        "Tex = BGFade",
+        "Color = White",
+        "Type = Transparent",
+        "",
+    ])
+    set_in_section(sections, "HelpPopupButton1", {
+        "Tex": "Button",
+        "Type": "Transparent",
+        "Color": "TokyoMagenta",
+        "DColor": "TokyoSurface",
+    })
+    set_in_section(sections, "HelpPopupButton1Text1", {"Size": "16", "Y": "4", "Color": "TokyoWhite"})
+
+    help_vol_specs = [
+        ("HelpPopupSelectVolAudio", "HELP_VOLUME_AUDIO", 64, 20),
+        ("HelpPopupSelectVolVocals", "HELP_VOLUME_VOCALS", 416, 20),
+        ("HelpPopupSelectVolSfx", "HELP_VOLUME_SFX", 64, 56),
+        ("HelpPopupSelectVolPreview", "HELP_VOLUME_PREVIEW", 416, 56),
+    ]
+    # Remove duplicate HelpPopupSelectVol* entries present in upstream Modern.ini
+    seen_help_vols: set[str] = set()
+    deduped_sections: list[tuple[str | None, list[str]]] = []
+    for sec_name, sec_lines in sections:
+        if sec_name and sec_name.startswith("HelpPopupSelectVol"):
+            if sec_name in seen_help_vols:
+                continue
+            seen_help_vols.add(sec_name)
+        deduped_sections.append((sec_name, sec_lines))
+    sections[:] = deduped_sections
+
+    for sec_name, lang_key, vx, vy in help_vol_specs:
+        replace_section(sections, sec_name, [
+            f"Text = {lang_key}",
+            "Tex = Button",
+            "Type = Transparent",
+            "TexSBG = SelectBG",
+            "TypeSBG = Transparent",
+            "ShowArrows = 0",
+            "OneItemOnly = 1",
+            f"X = {vx}",
+            f"Y = {vy}",
+            "W = 320",
+            "H = 30",
+            "Z = 1",
+            "SkipX = -320",
+            "SBGW = 320",
+            "TextSize = 16",
+            "Color = TokyoMagenta",
+            "DColor = TokyoSurface",
+            "TColor = TokyoWhite",
+            "TDColor = TokyoMuted",
+            "SBGColor = TokyoCyan",
+            "SBGDColor = TokyoSurfaceHigh",
+            "STColor = TokyoWhite",
+            "STDColor = TokyoWhite",
+            "",
+        ])
+
+    # 10. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
     replace_section(sections, "SingBackground", [
         "Type = image",
         "Tex = SingBG",

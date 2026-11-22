@@ -752,7 +752,7 @@ def generate_textures() -> None:
     write_png(THEME_DIR / "ui" / "card_surface.png", 360, 220, make_surface_card(360, 220, radius=18.0, alpha_fill=224.0, border_accent=COL_OUTLINE))
     write_png(THEME_DIR / "ui" / "card_accent.png", 360, 220, make_surface_card(360, 220, radius=18.0, alpha_fill=232.0, border_accent=COL_CYAN, top_accent_bar=True))
     write_png(THEME_DIR / "ui" / "white_rect.png", 32, 32, make_colorizable_pill(32, 32, radius=0.0))
-    write_png(THEME_DIR / "ui" / "bg_fade.png", 64, 64, make_surface_card(64, 64, radius=0.0, alpha_fill=150.0, border_accent=COL_BG_DEEP))
+    write_png(THEME_DIR / "ui" / "bg_fade.png", 64, 64, make_surface_card(64, 64, radius=0.0, alpha_fill=234.0, border_accent=COL_BG_DEEP))
 
     # Cursor, Arrows & Distinct Bottom-Bar Shortcut Keycaps
     write_png(THEME_DIR / "ui" / "cursor.png", 48, 48, make_cursor(48, pressed=False))
