@@ -651,7 +651,112 @@ def build_tokyo84_ini() -> None:
         "Reflection": "0",
     })
 
-    # 11. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
+    # 11. Party Mode (Shared Header & Next Round Screen) — Consistent Tokyo84 M3 Styling
+    set_in_section(sections, "DefaultPartyIcon", {"X": "48", "Y": "22", "W": "32", "H": "32", "Type": "Transparent"})
+    set_in_section(sections, "DefaultPartyTitleText", {"X": "90", "Y": "16", "Size": "36", "Color": "TokyoWhite"})
+    set_in_section(sections, "PartyNewRoundText2", {"X": "90", "Y": "58", "Size": "18", "Color": "TokyoCyan"})
+
+    # Team Score Cards (Left Column: X=48, W=364, H=64, Kabukicho Midnight neon borders)
+    set_in_section(sections, "PartyNewRoundStaticTeam1", {
+        "X": "48",
+        "Y": "104",
+        "W": "364",
+        "H": "64",
+        "Color": "TokyoCyan",
+        "Type": "Transparent",
+        "Reflection": "0",
+    })
+    set_in_section(sections, "PartyNewRoundStaticTeam2", {"Y": "180", "Color": "TokyoMagenta"})
+    set_in_section(sections, "PartyNewRoundStaticTeam3", {"Y": "256", "Color": "TokyoAmber"})
+
+    set_in_section(sections, "PartyNewRoundTextNameTeam1", {"X": "64", "Y": "114", "Size": "22", "Color": "TokyoWhite"})
+    set_in_section(sections, "PartyNewRoundTextNameTeam2", {"Y": "190"})
+    set_in_section(sections, "PartyNewRoundTextNameTeam3", {"Y": "266"})
+
+    set_in_section(sections, "PartyNewRoundTextTeam1Players", {"X": "64", "Y": "142", "Size": "14", "Color": "TokyoMuted"})
+    set_in_section(sections, "PartyNewRoundTextTeam2Players", {"Y": "218"})
+    set_in_section(sections, "PartyNewRoundTextTeam3Players", {"Y": "294"})
+
+    set_in_section(sections, "PartyNewRoundTextScoreTeam1", {
+        "X": "394",
+        "Y": "118",
+        "Size": "30",
+        "Align": "2",
+        "Color": "TokyoWhite",
+    })
+    set_in_section(sections, "PartyNewRoundTextScoreTeam2", {"Y": "194"})
+    set_in_section(sections, "PartyNewRoundTextScoreTeam3", {"Y": "270"})
+
+    # Round / Winner Table (Right Column: X=432, W=320, dark M3 rows + cyan headers)
+    set_in_section(sections, "PartyNewRoundStatic4", {
+        "X": "432",
+        "Y": "104",
+        "W": "320",
+        "H": "28",
+        "Tex": "SongMenuBG",
+        "Color": "White",
+        "Type": "Transparent",
+    })
+    set_in_section(sections, "PartyNewRoundText5", {"X": "446", "Y": "110", "Size": "16", "Color": "TokyoCyan"})
+    set_in_section(sections, "PartyNewRoundText6", {"X": "590", "Y": "110", "Size": "16", "Color": "TokyoCyan"})
+
+    set_in_section(sections, "PartyNewRoundStaticRound1", {
+        "X": "432",
+        "Y": "136",
+        "W": "320",
+        "H": "24",
+        "Color": "White",
+        "Type": "Transparent",
+    })
+    set_in_section(sections, "PartyNewRoundTextRound1", {"X": "446", "Y": "140", "Size": "15", "Color": "TokyoWhite"})
+    set_in_section(sections, "PartyNewRoundTextWinner1", {"X": "590", "Y": "140", "Size": "15", "Color": "TokyoMuted"})
+    for idx_r in range(2, 8):
+        row_y = 136 + (idx_r - 1) * 28
+        set_in_section(sections, f"PartyNewRoundStaticRound{idx_r}", {"Y": str(row_y)})
+        set_in_section(sections, f"PartyNewRoundTextRound{idx_r}", {"Y": str(row_y + 4)})
+        set_in_section(sections, f"PartyNewRoundTextWinner{idx_r}", {"Y": str(row_y + 4)})
+
+    # Center "Round 1" Banner, Next Players Pills (no reflections), and Rule Description Card
+    set_in_section(sections, "PartyNewRoundStatic6", {
+        "X": "270",
+        "Y": "350",
+        "W": "260",
+        "H": "44",
+        "Tex": "SongMenuBG",
+        "Color": "White",
+        "Type": "Transparent",
+    })
+    set_in_section(sections, "PartyNewRoundText7", {"X": "424", "Y": "358", "Size": "24", "Color": "TokyoWhite"})
+    set_in_section(sections, "PartyNewRoundTextNextRoundNo", {"X": "434", "Y": "358", "Size": "24", "Color": "TokyoCyan"})
+
+    set_in_section(sections, "PartyNewRoundStaticNextPlayer1", {
+        "Y": "408",
+        "H": "42",
+        "Color": "TokyoCyan",
+        "Reflection": "0",
+    })
+    set_in_section(sections, "PartyNewRoundStaticNextPlayer2", {"Color": "TokyoMagenta"})
+    set_in_section(sections, "PartyNewRoundStaticNextPlayer3", {"Color": "TokyoAmber"})
+    set_in_section(sections, "PartyNewRoundTextNextPlayer1", {"Y": "419", "Size": "18", "Color": "TokyoWhite"})
+
+    set_in_section(sections, "PartyNewRoundStatic7", {
+        "X": "48",
+        "Y": "474",
+        "W": "704",
+        "H": "44",
+        "Tex": "SongMenuBG",
+        "Color": "White",
+        "Type": "Transparent",
+    })
+    set_in_section(sections, "PartyNewRoundTextNextRound", {
+        "X": "400",
+        "Y": "487",
+        "Size": "16",
+        "Align": "1",
+        "Color": "TokyoCyan",
+    })
+
+    # 12. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
     replace_section(sections, "SingBackground", [
         "Type = image",
         "Tex = SingBG",
