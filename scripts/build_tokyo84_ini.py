@@ -310,7 +310,55 @@ def build_tokyo84_ini() -> None:
                 new_lines.append(ln)
         sections[idx_s] = (sec_name, new_lines)
 
-    # 7. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
+    # 7. About, Statistics & Popups — Smaller Body Typography (No Overflow) & Cohesive M3 Cards
+    #    Body/list text is sized at 15-16 (strictly smaller than 18px buttons) with generous padding.
+    set_in_section(sections, "AboutMainText1", {"Size": "38", "Y": "16", "Color": "TokyoWhite"})
+    set_in_section(sections, "AboutMainText3", {"Size": "20", "Y": "62", "Color": "TokyoCyan"})
+    set_in_section(sections, "AboutMainTextOverview", {
+        "X": "58",
+        "Y": "130",
+        "W": "484",
+        "Size": "15",
+        "Color": "TokyoWhite",
+    })
+    set_in_section(sections, "AboutMainButtonCreditsText1", {"Size": "18", "Y": "15", "Color": "TokyoWhite"})
+    set_in_section(sections, "AboutMainStatic6", {"Y": "106", "H": "4", "Color": "TokyoCyan"})
+    set_in_section(sections, "AboutMainStatic7", {"Y": "110", "H": "388", "Color": "White"})
+    set_in_section(sections, "AboutMainStatic8", {"Y": "498", "H": "4", "Color": "TokyoMagenta"})
+
+    set_in_section(sections, "StatMainText1", {"Size": "38", "Y": "16", "Color": "TokyoWhite"})
+    set_in_section(sections, "StatMainTextOverview", {
+        "X": "58",
+        "Y": "130",
+        "W": "484",
+        "Size": "15",
+        "Color": "TokyoWhite",
+    })
+    set_in_section(sections, "StatMainButtonScoresText1", {"Size": "18", "Y": "15", "Color": "TokyoWhite"})
+    set_in_section(sections, "StatMainButtonSongsText1", {"Size": "17", "Y": "15", "Color": "TokyoWhite"})
+    set_in_section(sections, "StatMainStatic6", {"Y": "106", "H": "4", "Color": "TokyoCyan"})
+    set_in_section(sections, "StatMainStatic7", {"Y": "110", "H": "320", "Color": "White"})
+    set_in_section(sections, "StatMainStatic8", {"Y": "430", "H": "4", "Color": "TokyoMagenta"})
+
+    set_in_section(sections, "StatDetailText1", {"Size": "38", "Y": "16", "Color": "TokyoWhite"})
+    set_in_section(sections, "StatDetailTextDescription", {"Size": "20", "Y": "62", "Color": "TokyoCyan"})
+    set_in_section(sections, "StatDetailTextPage", {"Size": "15", "Color": "TokyoCyan"})
+    set_in_section(sections, "StatDetailTextList1", {"X": "58", "W": "484", "Size": "15", "Color": "TokyoWhite"})
+    set_in_section(sections, "StatDetailStatic6", {"Y": "106", "H": "4", "Color": "TokyoCyan"})
+    set_in_section(sections, "StatDetailStatic7", {"Y": "110", "H": "390", "Color": "White"})
+    set_in_section(sections, "StatDetailStatic8", {"Y": "500", "H": "4", "Color": "TokyoMagenta"})
+
+    # Popups — body text smaller than popup buttons
+    set_in_section(sections, "CheckPopupText1", {"Size": "16", "Color": "TokyoWhite"})
+    set_in_section(sections, "CheckPopupText", {"Size": "16", "Color": "TokyoWhite"})
+    set_in_section(sections, "CheckPopupButton1Text1", {"Size": "18", "Color": "TokyoWhite"})
+    set_in_section(sections, "InsertUserPopupText", {"Size": "16", "Color": "TokyoWhite"})
+    set_in_section(sections, "InsertUserPopupButton1Text1", {"Size": "18", "Color": "TokyoWhite"})
+    set_in_section(sections, "InsertUserPopupButtonUsernameText1", {"Size": "18", "Color": "TokyoWhite"})
+    set_in_section(sections, "InsertUserPopupButtonUsernameText2", {"Size": "18", "Color": "TokyoWhite"})
+    set_in_section(sections, "SendScorePopupText1", {"Size": "16", "Color": "TokyoWhite"})
+
+    # 8. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
     replace_section(sections, "SingBackground", [
         "Type = image",
         "Tex = SingBG",
