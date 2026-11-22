@@ -581,10 +581,10 @@ def build_tokyo84_ini() -> None:
     set_in_section(sections, "HelpPopupButton1Text1", {"Size": "16", "Y": "4", "Color": "TokyoWhite"})
 
     help_vol_specs = [
-        ("HelpPopupSelectVolAudio", "HELP_VOLUME_AUDIO", 64, 20),
-        ("HelpPopupSelectVolVocals", "HELP_VOLUME_VOCALS", 416, 20),
-        ("HelpPopupSelectVolSfx", "HELP_VOLUME_SFX", 64, 56),
-        ("HelpPopupSelectVolPreview", "HELP_VOLUME_PREVIEW", 416, 56),
+        ("HelpPopupSelectVolAudio", "HELP_VOLUME_AUDIO", 40, 18),
+        ("HelpPopupSelectVolVocals", "HELP_VOLUME_VOCALS", 412, 18),
+        ("HelpPopupSelectVolSfx", "HELP_VOLUME_SFX", 40, 50),
+        ("HelpPopupSelectVolPreview", "HELP_VOLUME_PREVIEW", 412, 50),
     ]
     # Remove duplicate HelpPopupSelectVol* entries present in upstream Modern.ini
     seen_help_vols: set[str] = set()
@@ -608,16 +608,16 @@ def build_tokyo84_ini() -> None:
             "OneItemOnly = 1",
             f"X = {vx}",
             f"Y = {vy}",
-            "W = 320",
-            "H = 30",
+            "W = 348",
+            "H = 26",
             "Z = 1",
-            "SkipX = -320",
-            "SBGW = 320",
-            "TextSize = 16",
+            "SkipX = -348",
+            "SBGW = 348",
+            "TextSize = 15",
             "Color = TokyoMagenta",
             "DColor = TokyoSurface",
-            "TColor = TokyoWhite",
-            "TDColor = TokyoMuted",
+            "TColor = TokyoCyan",
+            "TDColor = TokyoWhite",
             "SBGColor = TokyoCyan",
             "SBGDColor = TokyoSurfaceHigh",
             "STColor = TokyoWhite",
