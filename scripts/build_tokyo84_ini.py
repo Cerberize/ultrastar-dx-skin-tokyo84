@@ -180,13 +180,14 @@ def build_tokyo84_ini() -> None:
         "Color": "TokyoWhite",
     })
     set_in_section(sections, "DefaultSelectSlide", {
+        "TextSize": "18",
         "Color": "TokyoMagenta",
         "DColor": "TokyoSurfaceHigh",
         "TColor": "TokyoWhite",
         "TDColor": "TokyoWhite",
         "SBGColor": "TokyoCyan",
         "SBGDColor": "TokyoSurface",
-        "STColor": "TokyoBg",
+        "STColor": "TokyoWhite",
         "STDColor": "TokyoWhite",
     })
 
@@ -426,7 +427,92 @@ def build_tokyo84_ini() -> None:
         "Color": "TokyoWhite",
     })
 
-    # 8. About, Statistics & Popups — Smaller Body Typography (No Overflow) & Cohesive M3 Cards
+    # 8. Player Setup ([Name]) Screen — Decluttered M3 Layout, Dark Avatar Strip & Aligned Controls
+    set_in_section(sections, "NameStatic1", {"X": "48", "Y": "22", "W": "32", "H": "32"})
+    set_in_section(sections, "NameText1", {"X": "90", "Y": "16", "Size": "36", "Color": "TokyoWhite"})
+    set_in_section(sections, "NameText2", {"X": "90", "Y": "58", "Size": "18", "Color": "TokyoCyan"})
+
+    # Top "Number of Players" SelectSlide (aligned to 48..752 margins, Size=18)
+    set_in_section(sections, "NameSelectPlayerCount", {
+        "X": "48",
+        "Y": "92",
+        "W": "240",
+        "H": "36",
+        "SkipX": "12",
+        "SBGW": "452",
+        "TextSize": "18",
+        "STColor": "TokyoWhite",
+        "STDColor": "TokyoWhite",
+    })
+
+    # Compact Player Slots Strip (Y=142..214)
+    set_in_section(sections, "NamePlayerSelectStatic1", {"Y": "142", "H": "52"})
+    set_in_section(sections, "NamePlayerSelectStatic1Avatar", {"Y": "146", "H": "44"})
+    set_in_section(sections, "NamePlayerSelectStatic1Text", {"Y": "198", "Size": "14", "Color": "TokyoWhite"})
+    set_in_section(sections, "NamePlayerSelectCurrent", {"Y": "136", "H": "84"})
+
+    # Dark Translucent Horizontal Backdrop Strip behind Avatar Carousel (NameStatic7)
+    append_section(sections, "NameStatic7", [
+        "X = 48",
+        "Y = 230",
+        "W = 704",
+        "H = 150",
+        "Z = 0.1",
+        "Tex = SongMenuBG",
+        "Color = White",
+        "Type = Transparent",
+        "",
+    ])
+
+    # Centered Avatar & Crisp Active Frame inside Dark Strip (no cluttered reflections)
+    set_in_section(sections, "NamePlayerAvatar", {
+        "X": "342",
+        "Y": "248",
+        "W": "116",
+        "H": "116",
+        "Reflection": "0",
+    })
+    set_in_section(sections, "NamePlayerButtonAvatar", {
+        "X": "328",
+        "Y": "240",
+        "W": "144",
+        "H": "132",
+        "Color": "TokyoCyan",
+        "DColor": "TokyoOutline",
+    })
+
+    # Bottom Controls: All 3 boxes pixel-aligned to X=260..540 (W=280, H=36, 10px gap, Size=17)
+    set_in_section(sections, "NamePlayerButtonName", {
+        "X": "260",
+        "Y": "396",
+        "W": "280",
+        "H": "36",
+        "Color": "TokyoMagenta",
+        "DColor": "TokyoSurface",
+    })
+    set_in_section(sections, "NamePlayerButtonNameText1", {
+        "X": "140",
+        "Y": "9",
+        "Size": "17",
+        "Color": "TokyoWhite",
+    })
+    set_in_section(sections, "NameSelectPlayerColor", {
+        "X": "0",
+        "W": "260",
+        "SBGW": "280",
+        "Y": "442",
+        "H": "36",
+        "TextSize": "17",
+        "ArrowW": "16",
+        "ArrowH": "24",
+        "STColor": "TokyoWhite",
+        "STDColor": "TokyoWhite",
+    })
+    set_in_section(sections, "NameSelectPlayerLevel", {
+        "Y": "488",
+    })
+
+    # 9. About, Statistics & Popups — Smaller Body Typography (No Overflow) & Cohesive M3 Cards
     #    Body/list text is sized at 15-16 (strictly smaller than 18px buttons) with generous padding.
     set_in_section(sections, "AboutMainText1", {"Size": "38", "Y": "16", "Color": "TokyoWhite"})
     set_in_section(sections, "AboutMainText3", {"Size": "20", "Y": "62", "Color": "TokyoCyan"})
