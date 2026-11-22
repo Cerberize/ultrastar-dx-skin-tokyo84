@@ -63,6 +63,14 @@ def set_in_section(sections: list[tuple[str | None, list[str]]], name: str, upda
     raise KeyError(f"Section [{name}] not found in Modern.ini")
 
 
+def append_section(sections: list[tuple[str | None, list[str]]], name: str, body: list[str]) -> None:
+    for i, (sec_name, _) in enumerate(sections):
+        if sec_name == name:
+            sections[i] = (sec_name, body)
+            return
+    sections.append((name, body))
+
+
 def build_tokyo84_ini() -> None:
     raw = MODERN_INI.read_text(encoding="utf-8", errors="ignore")
     sections = parse_sections(raw)
@@ -310,7 +318,115 @@ def build_tokyo84_ini() -> None:
                 new_lines.append(ln)
         sections[idx_s] = (sec_name, new_lines)
 
-    # 7. About, Statistics & Popups — Smaller Body Typography (No Overflow) & Cohesive M3 Cards
+    # 7. Options Menu — Grouped 3-Column Material Design 3 Layout (No Hover Jump!)
+    #    Eliminates SelectH=100 downward jump by setting Fade=0, FadeText=0, SelectH=44.
+    #    Groups all 11 settings cleanly into 3 symmetric 224px M3 cards:
+    #      Col 1 (X=48):  GAMEPLAY & UI  (Game, Themes, Lyrics, Jukebox)
+    #      Col 2 (X=288): AUDIO & VIDEO  (Graphics, Sound, Record, Webcam)
+    #      Col 3 (X=528): SYSTEM & INPUT (Input, Network, Advanced) + Back below
+    set_in_section(sections, "OptionsStatic1", {"X": "48", "Y": "44", "W": "32", "H": "32", "Type": "Transparent"})
+    set_in_section(sections, "OptionsText1", {"X": "90", "Y": "38", "Size": "38", "Color": "TokyoWhite"})
+    set_in_section(sections, "OptionsText2", {"X": "90", "Y": "80", "Size": "18", "Color": "TokyoMuted"})
+    set_in_section(sections, "OptionsTextDescription", {"X": "90", "Y": "104", "Size": "18", "Color": "TokyoCyan"})
+
+    # 3 Group Background Cards (OptionsStatic7..9)
+    for idx_c, card_x in enumerate([48, 288, 528], start=7):
+        append_section(sections, f"OptionsStatic{idx_c}", [
+            f"X = {card_x}",
+            "Y = 142",
+            "W = 224",
+            "H = 286",
+            "Z = 0.2",
+            "Tex = SongMenuBG",
+            "Color = White",
+            "Type = Transparent",
+            "",
+        ])
+
+    # 3 Group Header Labels (OptionsText7..9)
+    for idx_t, (lbl_x, lbl_text) in enumerate(
+        [(64, "GAMEPLAY & UI"), (304, "AUDIO & VIDEO"), (544, "SYSTEM & INPUT")],
+        start=7,
+    ):
+        append_section(sections, f"OptionsText{idx_t}", [
+            f"X = {lbl_x}",
+            "Y = 158",
+            "Z = 0.3",
+            "Color = TokyoCyan",
+            "Font = 0",
+            "Style = 1",
+            "Size = 15",
+            "Align = 0",
+            f"Text = {lbl_text}",
+            "",
+        ])
+
+    # Base Options Button (stable on hover: Fade=0, FadeText=0, SelectH=44)
+    replace_section(sections, "OptionsButtonGame", [
+        "X = 64",
+        "Y = 190",
+        "W = 192",
+        "H = 44",
+        "Z = 0.4",
+        "Tex = Button",
+        "Color = TokyoMagenta",
+        "DColor = TokyoSurface",
+        "Type = Transparent",
+        "Texts = 1",
+        "Reflection = 0",
+        "Fade = 0",
+        "FadeText = 0",
+        "SelectW = 192",
+        "SelectH = 44",
+        "",
+    ])
+
+    opt_btn_text = {"X": "96", "Y": "12", "Size": "18", "Align": "1", "Color": "TokyoWhite"}
+    set_in_section(sections, "OptionsButtonGameText1", opt_btn_text)
+
+    # Column 1: Gameplay & UI (X=64)
+    replace_section(sections, "OptionsButtonThemes", ["Inherits = OptionsButtonGame", "X = 64", "Y = 246", ""])
+    set_in_section(sections, "OptionsButtonThemesText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonLyrics", ["Inherits = OptionsButtonGame", "X = 64", "Y = 302", ""])
+    set_in_section(sections, "OptionsButtonLyricsText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonJukebox", ["Inherits = OptionsButtonGame", "X = 64", "Y = 358", ""])
+    set_in_section(sections, "OptionsButtonJukeboxText1", opt_btn_text)
+
+    # Column 2: Audio & Video (X=304)
+    replace_section(sections, "OptionsButtonGraphics", ["Inherits = OptionsButtonGame", "X = 304", "Y = 190", ""])
+    set_in_section(sections, "OptionsButtonGraphicsText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonSound", ["Inherits = OptionsButtonGame", "X = 304", "Y = 246", ""])
+    set_in_section(sections, "OptionsButtonSoundText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonRecord", ["Inherits = OptionsButtonGame", "X = 304", "Y = 302", ""])
+    set_in_section(sections, "OptionsButtonRecordText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonWebcam", ["Inherits = OptionsButtonGame", "X = 304", "Y = 358", ""])
+    set_in_section(sections, "OptionsButtonWebcamText1", opt_btn_text)
+
+    # Column 3: System & Input (X=544)
+    replace_section(sections, "OptionsButtonInput", ["Inherits = OptionsButtonGame", "X = 544", "Y = 190", ""])
+    set_in_section(sections, "OptionsButtonInputText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonNetwork", ["Inherits = OptionsButtonGame", "X = 544", "Y = 246", ""])
+    set_in_section(sections, "OptionsButtonNetworkText1", opt_btn_text)
+    replace_section(sections, "OptionsButtonAdvanced", ["Inherits = OptionsButtonGame", "X = 544", "Y = 302", ""])
+    set_in_section(sections, "OptionsButtonAdvancedText1", opt_btn_text)
+
+    # Back button aligned cleanly below Column 3
+    set_in_section(sections, "OptionsButtonExit", {
+        "X": "544",
+        "Y": "466",
+        "W": "192",
+        "H": "44",
+        "Color": "TokyoCyan",
+        "DColor": "TokyoSurface",
+    })
+    set_in_section(sections, "OptionsButtonExitText1", {
+        "X": "96",
+        "Y": "12",
+        "Size": "18",
+        "Color": "TokyoWhite",
+    })
+
+    # 8. About, Statistics & Popups — Smaller Body Typography (No Overflow) & Cohesive M3 Cards
     #    Body/list text is sized at 15-16 (strictly smaller than 18px buttons) with generous padding.
     set_in_section(sections, "AboutMainText1", {"Size": "38", "Y": "16", "Color": "TokyoWhite"})
     set_in_section(sections, "AboutMainText3", {"Size": "20", "Y": "62", "Color": "TokyoCyan"})
