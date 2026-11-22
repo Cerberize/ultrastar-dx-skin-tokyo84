@@ -626,10 +626,13 @@ def build_tokyo84_ini() -> None:
         ])
 
     # 10. Song Selection — Remove Obsolete Upper White Box & Upgrade Info Card to Clean M3 Dark Surface
+    #     Use 1x1 transparent ButtonFade texture so USDX draws zero pixels even if W/H falls back to native size
     set_in_section(sections, "SongRouletteStatic3", {
-        "W": "0",
-        "H": "0",
-        "Visible": "0",
+        "W": "1",
+        "H": "1",
+        "Tex": "ButtonFade",
+        "Type": "Transparent",
+        "Color": "White",
     })
     set_in_section(sections, "SongRouletteStatic4", {
         "X": "296",
@@ -750,7 +753,7 @@ def build_skin_ini() -> None:
 
         # Song Select
         "SongCover": "ui/song_cover_default.png",
-        "SongSelection1": "ui/song_selection.png",
+        "SongSelection1": "ui/button_fade.png",
         "SongSelection2": "ui/song_selection.png",
         "SongSelection3": "ui/song_selection.png",
         "SongSelection4": "ui/song_selection.png",
