@@ -625,7 +625,30 @@ def build_tokyo84_ini() -> None:
             "",
         ])
 
-    # 10. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
+    # 10. Song Selection — Remove Obsolete Upper White Box & Upgrade Info Card to Clean M3 Dark Surface
+    set_in_section(sections, "SongRouletteStatic3", {
+        "W": "0",
+        "H": "0",
+        "Visible": "0",
+    })
+    set_in_section(sections, "SongRouletteStatic4", {
+        "X": "296",
+        "Y": "322",
+        "W": "208",
+        "H": "160",
+        "Tex": "SongMenuBG",
+        "Color": "White",
+        "Type": "Transparent",
+        "Reflection": "0",
+    })
+    set_in_section(sections, "SongChessboardStatic3", {
+        "Tex": "SongMenuBG",
+        "Color": "White",
+        "Type": "Transparent",
+        "Reflection": "0",
+    })
+
+    # 11. Singing Screen — 1984 Midnight Tokyo Tower Backdrop + Neon Progress Bar
     replace_section(sections, "SingBackground", [
         "Type = image",
         "Tex = SingBG",
