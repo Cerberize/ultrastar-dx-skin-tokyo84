@@ -734,12 +734,12 @@ def generate_sounds() -> None:
 def generate_textures() -> None:
     print("Rendering complete UltraStar Deluxe Tokyo84 texture set...")
 
-    # --- UI Buttons & Surfaces (Colorizable + High-Contrast Neon Accent Border) ---
-    write_png(THEME_DIR / "ui" / "button.png", 280, 52, make_colorizable_pill(280, 52, radius=24.0, soft_glow=True, high_contrast_border=True))
+    # --- UI Buttons & Surfaces (Rounded Rectangles + High-Contrast Neon Accent Border) ---
+    write_png(THEME_DIR / "ui" / "button.png", 280, 52, make_colorizable_pill(280, 52, radius=10.0, soft_glow=True, high_contrast_border=True))
     # `ButtonFade` is a 1x1 transparent PNG so Fade=1 works cleanly without stray white artifacts
     write_png(THEME_DIR / "ui" / "button_fade.png", 1, 1, make_transparent_pixel())
-    write_png(THEME_DIR / "ui" / "main_bar.png", 160, 36, make_colorizable_pill(160, 36, radius=14.0, soft_glow=True, high_contrast_border=True))
-    write_png(THEME_DIR / "ui" / "select_bg.png", 400, 36, make_colorizable_pill(400, 36, radius=14.0, soft_glow=True, high_contrast_border=True))
+    write_png(THEME_DIR / "ui" / "main_bar.png", 160, 36, make_colorizable_pill(160, 36, radius=8.0, soft_glow=True, high_contrast_border=True))
+    write_png(THEME_DIR / "ui" / "select_bg.png", 400, 36, make_colorizable_pill(400, 36, radius=8.0, soft_glow=True, high_contrast_border=True))
     write_png(THEME_DIR / "ui" / "select_frame.png", 140, 140, make_colorizable_pill(140, 140, radius=18.0, border_only=True))
 
     # Bottom Legend Bars (Leiste1 = Colorizable left accent bar, Leiste2 = Dark M3 right bar)

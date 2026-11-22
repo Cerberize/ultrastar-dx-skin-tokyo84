@@ -137,14 +137,19 @@ def build_tokyo84_ini() -> None:
     })
     set_in_section(sections, "DefaultLegendText", {
         "Color": "TokyoWhite",
-        "Size": "20",
-        "Y": "550",
+        "Size": "18",
+        "Y": "551",
         "Reflection": "0",
     })
     set_in_section(sections, "DefaultButton", {
         "Color": "TokyoMagenta",
         "DColor": "TokyoSurfaceHigh",
         "Type": "Transparent",
+    })
+    set_in_section(sections, "DefaultButtonText", {
+        "Y": "11",
+        "Size": "18",
+        "Color": "TokyoWhite",
     })
     set_in_section(sections, "DefaultFadeButton", {
         "W": "150",
@@ -161,8 +166,8 @@ def build_tokyo84_ini() -> None:
     })
     set_in_section(sections, "DefaultButtonFadeText", {
         "X": "75",
-        "Y": "11",
-        "Size": "22",
+        "Y": "15",
+        "Size": "18",
         "Align": "1",
         "Color": "TokyoWhite",
     })
@@ -203,14 +208,14 @@ def build_tokyo84_ini() -> None:
     })
     set_in_section(sections, "MainText1", {
         "X": "106",
-        "Y": "46",
-        "Size": "42",
+        "Y": "50",
+        "Size": "36",
         "Color": "TokyoWhite",
     })
     set_in_section(sections, "MainTextDescriptionLong", {
         "X": "56",
-        "Y": "496",
-        "Size": "20",
+        "Y": "498",
+        "Size": "18",
         "Color": "TokyoCyan",
     })
 
@@ -222,20 +227,20 @@ def build_tokyo84_ini() -> None:
         "SelectW": "260",
         "SelectH": "46",
     })
-    set_in_section(sections, "MainButtonSoloText1", {"X": "130", "Y": "10", "Size": "24"})
+    set_in_section(sections, "MainButtonSoloText1", {"X": "130", "Y": "12", "Size": "20"})
     set_in_section(sections, "MainButtonMulti", {"X": "56", "Y": "182"})
-    set_in_section(sections, "MainButtonMultiText1", {"X": "130", "Y": "10", "Size": "24"})
+    set_in_section(sections, "MainButtonMultiText1", {"X": "130", "Y": "12", "Size": "20"})
     set_in_section(sections, "MainButtonJukebox", {"X": "56", "Y": "240"})
-    set_in_section(sections, "MainButtonJukeboxText1", {"X": "130", "Y": "10", "Size": "24"})
+    set_in_section(sections, "MainButtonJukeboxText1", {"X": "130", "Y": "12", "Size": "20"})
     set_in_section(sections, "MainButtonCollection1", {
         "X": "56",
         "Y": "298",
         "Fade": "1",
         "FadeTex": "ButtonFade",
     })
-    set_in_section(sections, "MainButtonCollection1Text1", {"X": "130", "Y": "10", "Size": "24"})
+    set_in_section(sections, "MainButtonCollection1Text1", {"X": "130", "Y": "12", "Size": "20"})
 
-    # Tools sub-menu expands cleanly to the right of Tools pill
+    # Tools sub-menu expands cleanly to the right of Tools button
     set_in_section(sections, "MainButtonStats", {
         "X": "332",
         "Y": "298",
@@ -246,15 +251,15 @@ def build_tokyo84_ini() -> None:
     })
     set_in_section(sections, "MainButtonStatsText1", {
         "X": "82",
-        "Y": "8",
-        "Size": "20",
+        "Y": "10",
+        "Size": "17",
         "Color": "TokyoWhite",
         "DColor": "TokyoWhite",
     })
     set_in_section(sections, "MainButtonEditor", {"Y": "344"})
     set_in_section(sections, "MainButtonOptions", {"Y": "390"})
 
-    # About & Exit compact pills below main stack
+    # About & Exit compact rounded-rectangle buttons below main stack
     set_in_section(sections, "MainButtonAbout", {
         "X": "56",
         "Y": "376",
@@ -265,8 +270,8 @@ def build_tokyo84_ini() -> None:
     })
     set_in_section(sections, "MainButtonAboutText1", {
         "X": "62",
-        "Y": "9",
-        "Size": "20",
+        "Y": "11",
+        "Size": "17",
         "Color": "TokyoWhite",
     })
     set_in_section(sections, "MainButtonExit", {

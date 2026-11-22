@@ -299,12 +299,12 @@
   .usdx-pill {
     width: 100%;
     padding: 0.62rem 1rem;
-    border-radius: var(--md-shape-pill);
+    border-radius: 10px;
     border: 2px solid rgba(72, 79, 118, 0.72);
     background: rgba(19, 22, 38, 0.90);
     color: var(--md-sys-color-on-surface);
     font-weight: 700;
-    font-size: clamp(0.82rem, 1.35vw, 1.1rem);
+    font-size: clamp(0.76rem, 1.15vw, 0.96rem);
     letter-spacing: 0.06em;
     text-align: center;
     transition: background 150ms, border-color 150ms, box-shadow 150ms, transform 150ms;
